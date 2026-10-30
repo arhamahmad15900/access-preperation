@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Access Computer Preparation — CBT Exam & Preparation Portal</title>
+    <meta name="description" content="Complete Exam Preparation & Online Computer Based Test (CBT) Examination Platform for NIELIT O'Level, CCC, MS Excel, Word, PowerPoint, HTML, CSS, JavaScript, and Python." />
+    <meta property="og:title" content="Access Computer Preparation — CBT Exam & Preparation Portal" />
+    <meta property="og:description" content="Complete Exam Preparation & Online Computer Based Test (CBT) Examination Platform for NIELIT O'Level, CCC, MS Office, and Programming." />
+    <meta property="og:type" content="website" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <script>
+      (function () {
+        try {
+          localStorage.removeItem('accp-theme');
+          var saved = localStorage.getItem('accp-theme-mode');
+          if (saved === 'dark') {
+            document.documentElement.classList.add('dark');
+          } else {
+            document.documentElement.classList.remove('dark');
+          }
+        } catch (e) {
+          document.documentElement.classList.remove('dark');
+        }
+
+        try {
+          var NativeWebSocket = window.WebSocket;
+          if (NativeWebSocket) {
+            var PatchedWebSocket = function (url, protocols) {
+              var protoStr = Array.isArray(protocols)
+                ? protocols.join(',')
+                : String(protocols || '');
+              var urlStr = String(url || '');
+              if (
+                protoStr.indexOf('vite-hmr') !== -1 ||
+                protoStr.indexOf('vite-ping') !== -1
+              ) {
+                var target = new EventTarget();
+                var ws = {
+                  url: urlStr,
+                  protocol: Array.isArray(protocols)
+                    ? protocols[0] || 'vite-hmr'
+                    : protocols || 'vite-hmr',
+                  readyState: 0,
+                  bufferedAmount: 0,
+                  extensions: '',
+                  binaryType: 'blob',
+                  CONNECTING: 0,
+                  OPEN: 1,
+                  CLOSING: 2,
+                  CLOSED: 3,
+                  onopen: null,
+                  onmessage: null,
+                  onerror: null,
+                  onclose: null,
+                  addEventListener: target.addEventListener.bind(target),
+                  removeEventListener: target.removeEventListener.bind(target),
+                  dispatchEvent: target.dispatchEvent.bind(target),
+                  send: function () {},
+                  close: function () {
+                    ws.readyState = 3;
+                  },
+                };
+                setTimeout(function () {
+                  ws.readyState = 1;
+                  var openEvt = new Event('open');
+                  if (typeof ws.onopen === 'function') ws.onopen(openEvt);
+                  ws.dispatchEvent(openEvt);
+                  if (protoStr.indexOf('vite-hmr') !== -1) {
+                    var msgEvt = new MessageEvent('message', {
+                      data: JSON.stringify({ type: 'connected' }),
+                    });
+                    if (typeof ws.onmessage === 'function') ws.onmessage(msgEvt);
+                    ws.dispatchEvent(msgEvt);
+                  }
+                }, 10);
+                return ws;
+              }
+              return protocols !== undefined
+                ? new NativeWebSocket(url, protocols)
+                : new NativeWebSocket(url);
+            };
+            PatchedWebSocket.prototype = NativeWebSocket.prototype;
+            PatchedWebSocket.CONNECTING = NativeWebSocket.CONNECTING;
+            PatchedWebSocket.OPEN = NativeWebSocket.OPEN;
+            PatchedWebSocket.CLOSING = NativeWebSocket.CLOSING;
+            PatchedWebSocket.CLOSED = NativeWebSocket.CLOSED;
+            window.WebSocket = PatchedWebSocket;
+          }
+        } catch (e) {}
+      })();
+    </script>
+  </head>
+  <body class="bg-slate-50 dark:bg-[#101318] text-slate-900 dark:text-[#F1F5F9] antialiased selection:bg-blue-700 selection:text-white transition-colors duration-200">
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
+
